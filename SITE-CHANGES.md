@@ -9,6 +9,7 @@
 - 移除登录、注册和账号设置中的 GitHub 登录/绑定展示，保留已有邮箱认证流程。
 - API 非接口路径的回退跳转改为本站游戏入口。
 - Service Worker 对 `/web` 使用网络请求，避免官网被当成游戏应用壳缓存。
+- 官网页脚不展示本站源码链接，源码获取入口位于“开源项目关系”折叠说明中。
 
 构建命令：`pnpm install --frozen-lockfile`，`pnpm run build`。运行时及包管理器版本以 package.json 和 docker/Dockerfile.app 为准。前端产物为 apps/web/dist，API 产物为 apps/api/dist。
 
