@@ -33,6 +33,8 @@ const HASHED_BUILD_ASSET =
 // identity and game state, so neither can be replayed from cache.
 function isNetworkOnlyPath(url: URL) {
   return (
+    url.pathname === '/web' ||
+    url.pathname.startsWith('/web/') ||
     url.pathname === '/version.json' ||
     url.pathname.startsWith('/api/') ||
     url.pathname.startsWith('/internal/')
@@ -48,7 +50,11 @@ function isHashedBuildAsset(url: URL) {
 }
 
 function isRuntimeMedia(request: Request, url: URL) {
-  if (request.method !== 'GET' || !isSameOrigin(url) || isNetworkOnlyPath(url)) {
+  if (
+    request.method !== 'GET' ||
+    !isSameOrigin(url) ||
+    isNetworkOnlyPath(url)
+  ) {
     return false;
   }
   if (isHashedBuildAsset(url)) return false;
@@ -83,10 +89,7 @@ async function storeShell(response: Response) {
 
 async function refreshShellFromNetwork() {
   const controller = new AbortController();
-  const timeoutId = setTimeout(
-    () => controller.abort(),
-    NAVIGATION_TIMEOUT_MS,
-  );
+  const timeoutId = setTimeout(() => controller.abort(), NAVIGATION_TIMEOUT_MS);
   try {
     const response = await fetch(SHELL_URL, {
       cache: 'reload',
@@ -202,8 +205,6 @@ async function handleNavigation(
 
 registerRoute(
   ({ request, url }) =>
-    request.mode === 'navigate' &&
-    isSameOrigin(url) &&
-    !isNetworkOnlyPath(url),
+    request.mode === 'navigate' && isSameOrigin(url) && !isNetworkOnlyPath(url),
   ({ event, request }) => handleNavigation(request, event),
 );

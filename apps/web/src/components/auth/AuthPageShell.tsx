@@ -75,7 +75,9 @@ export function AuthPageShell({
 
           <header className="mb-4 text-center">
             <p className="text-ink-secondary/80 mb-3 text-[0.72rem] tracking-[0.38em] sm:mb-4">
-              DAOYOU.ORG
+              <a href="/web" className="hover:text-ink transition-colors">
+                game.hantieyi.cn
+              </a>
             </p>
             <div className="border-ink/12 bg-paper/90 mx-auto mb-4 flex h-28 w-28 items-center justify-center rounded-full border border-dashed shadow-[0_12px_36px_rgba(44,24,16,0.08)] sm:mb-5 sm:h-32 sm:w-32">
               <img
@@ -125,6 +127,22 @@ export function AuthPageShell({
           {footer ? (
             <div className="mt-5 text-center text-sm leading-7">{footer}</div>
           ) : null}
+          <footer className="text-ink-secondary mt-6 text-center text-xs leading-7">
+            <a href="/web" className="hover:text-ink transition-colors">
+              网站首页
+            </a>
+            <span className="px-2" aria-hidden="true">
+              ·
+            </span>
+            <a
+              href="https://beian.miit.gov.cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-ink transition-colors"
+            >
+              京ICP备19026560号
+            </a>
+          </footer>
         </div>
       </div>
     </div>

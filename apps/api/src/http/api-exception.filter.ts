@@ -44,7 +44,7 @@ export class ApiExceptionFilter implements ExceptionFilter {
         if (!/^\/(api|internal)(\/|$)/.test(path)) {
           response
             .status(302)
-            .setHeader('Location', 'https://client.daoyou.org');
+            .setHeader('Location', 'https://game.hantieyi.cn');
           response.end();
           return;
         }
